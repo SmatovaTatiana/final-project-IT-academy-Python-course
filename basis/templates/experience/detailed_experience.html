@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ experience.position }}
+{% endblock %}
+
+{% block body %}
+    <a href="{% url 'basis:all_experience' %}">Back to experience page</a>
+    <h2>{{ experience.position }}</h2>
+    <h3>{{ experience.company_name }}</h3>
+    <p>{{ experience.industry }}</p>
+    <p>Start work in {{ experience.start_date }}</p>
+    <p>End work in {{ experience.end_date }}</p>
+    <p>{{ experience.description }}</p>
+{% endblock %}

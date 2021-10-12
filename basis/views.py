@@ -17,3 +17,18 @@ def detailed_education(request, slug, graduated):
                                   graduated=graduated)
     return render(request, "education/detailed_education.html",
                   {'education': education})
+
+
+def all_experience(request):
+    experiences = models.Experience.objects.all()
+    return render(request, "experience/all_experience.html",
+                  {'experiences': experiences})
+
+
+def detailed_experience(request, slug, company_name, position):
+    experience = get_object_or_404(models.Experience,
+                                   slug=slug,
+                                   company_name=company_name,
+                                   position=position)
+    return render(request, "experience/detailed_experience.html",
+                  {'experience': experience})

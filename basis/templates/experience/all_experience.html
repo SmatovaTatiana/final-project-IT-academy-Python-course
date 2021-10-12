@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    My experience
+{% endblock %}
+hettt
+{% block body %}
+    {% for experience in experiences %}
+        <h2>{{ experience.position }}</h2>
+        <h3>{{ experience.company_name }}</h3>
+        <p>
+        {{ experience.description|truncatewords:5 }}
+        <br>
+        From: {{ experience.start_date }} till: {{ experience.end_date }}
+        </p>
+        <a href="{{ experience.get_absolute_url }}">Go to see more information</a>
+        <hr>
+    {% endfor %}
+{% endblock %}
