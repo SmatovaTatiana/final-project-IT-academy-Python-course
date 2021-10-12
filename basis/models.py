@@ -1,6 +1,7 @@
 from django.db import models
 
 # Create your models here.
+from django.urls import reverse
 
 
 class Education(models.Model):
@@ -13,3 +14,9 @@ class Education(models.Model):
 
     def __str__(self):
         return self.course_name
+
+    def get_absolute_url(self):
+        return reverse('basis:detailed_education',
+                       args=[self.slug,
+                             self.graduated,
+                             ])

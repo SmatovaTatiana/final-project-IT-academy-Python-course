@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ education.course_name }}
+{% endblock %}
+
+{% block body %}
+    <a href="{% url 'basis:all_education' %}">Back to education page</a>
+    <h3>{{ education.course_name }}</h3>
+    <p>{{ education.school_name }}</p>
+    <p>{{ education.description }}</p>
+    Graduated in: {{ education.graduated }}
+    <br>
+    {{ education.certificate }}
+{% endblock %}

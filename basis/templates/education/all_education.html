@@ -8,8 +8,10 @@
         <h3>{{ education.course_name }}</h3>
         <p>
         {{ education.description|truncatewords:5 }}
-        </p>
+        <br>
         Year of graduate: {{ education.graduated }}
+        </p>
+        <a href="{{ education.get_absolute_url }}">Go to see more information</a>
         <hr>
     {% endfor %}
 
