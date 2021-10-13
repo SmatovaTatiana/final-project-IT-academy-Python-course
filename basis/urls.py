@@ -10,4 +10,5 @@ urlpatterns = [
     path('all_experience/', views.all_experience, name='all_experience'),
     path('<slug:slug>/<str:company_name>/<str:position>', views.detailed_experience,
          name='detailed_experience'),
+    path('contact_form/', views.contact_form, name="contact_form"),
 ]

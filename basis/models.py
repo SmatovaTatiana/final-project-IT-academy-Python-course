@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
 # Create your models here.
 
 
@@ -40,3 +41,14 @@ class Experience(models.Model):
                              self.company_name,
                              self.position
                              ])
+
+
+class Messages(models.Model):
+    name = models.CharField(max_length=100)
+    sender_email = models.EmailField()
+    message = models.CharField(max_length=1000)
+    subject = models.CharField(max_length=255)
+    date = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.sender_email

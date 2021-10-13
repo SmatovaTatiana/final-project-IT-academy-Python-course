@@ -18,3 +18,9 @@ class ExperienceAdmin(admin.ModelAdmin):
     list_display = ('company_name', 'position', 'start_date', 'end_date')
     ordering = ('company_name', 'position')
     list_filter = ('position', )
+
+
+@admin.register(models.Messages)
+class MessagesAdmin(admin.ModelAdmin):
+    list_display = ('date', 'sender_email', 'name', 'subject')
+    list_filter = ('date', )

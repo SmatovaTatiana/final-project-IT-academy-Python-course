@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}
+    Send message
+{% endblock %}
+<!-- -->
+{% block body %}
+    {% if not sent %}  <!--добавляем флаг (добавлено во вьюшку) если не было отправлено, открываем форму-->
+        <h1>Send message</h1>
+        <form action="." method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="Send">
+        </form>
+    {% else %}  <!--если отправлено-->
+    <br><br> Message has been sent
+    {% endif %}
+
+{% endblock %}
