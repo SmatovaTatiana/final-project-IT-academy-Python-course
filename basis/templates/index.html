@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}
+    Index Page
+{% endblock %}
+{% block body %}
+    <a href="{% url 'basis:all_education' %}"> Education </a>
+    <br>
+    <a href="{% url 'basis:all_experience' %}">Experience</a>
+{% endblock %}

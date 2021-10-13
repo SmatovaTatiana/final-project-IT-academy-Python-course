@@ -7,6 +7,10 @@
     <link href="{% static "style.css" %}" rel="stylesheet" type="text/css">
 </head>
 <body>
-{% block body %} {% endblock %}
+
+
+{% block body %}{% endblock %}
+
+<br><a href="{% url 'basis:index_page' %}">Main page</a>
 </body>
 </html>

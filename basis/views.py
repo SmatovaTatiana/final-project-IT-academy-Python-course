@@ -32,3 +32,7 @@ def detailed_experience(request, slug, company_name, position):
                                    position=position)
     return render(request, "experience/detailed_experience.html",
                   {'experience': experience})
+
+
+def index_page(request):
+    return render(request, 'index.html')
