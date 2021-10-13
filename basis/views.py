@@ -36,3 +36,7 @@ def detailed_experience(request, slug, company_name, position):
 
 def index_page(request):
     return render(request, 'index.html')
+
+
+def contacts(request):
+    return render(request, 'contacts.html')
