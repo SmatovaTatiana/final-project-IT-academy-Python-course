@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name = 'basis'
 urlpatterns = [
@@ -11,4 +13,8 @@ urlpatterns = [
     path('<slug:slug>/<str:company_name>/<str:position>', views.detailed_experience,
          name='detailed_experience'),
     path('contact_form/', views.contact_form, name="contact_form"),
+    path('upload_documents/', views.document_form_upload, name='upload_documents'),
+
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    {% if not upload %}  <!--добавляем флаг (добавлено во вьюшку) если не было отправлено, открываем форму-->
+        <h1>Upload your file</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Upload</button>
+        </form>
+    {% else %}  <!--если отправлено-->
+    <br><br> Your file has been upload
+
+    {% endif %}
+
+{% endblock %}

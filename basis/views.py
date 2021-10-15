@@ -52,7 +52,7 @@ def contact_form(request):
 
     sent = False
 
-    if request.method== 'POST':
+    if request.method == 'POST':
         form = forms.ContactForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
@@ -72,3 +72,17 @@ def contact_form(request):
     return render(request,
                   "contact_form.html",
                   {'form': form, 'sent': sent})
+
+
+def document_form_upload(request):
+    upload = False
+    if request.method == 'POST':
+        form = forms.DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            upload = True
+    else:
+        form = forms.DocumentForm()
+    return render(request,
+                  'upload_documents.html',
+                  {'form': form, 'upload': upload})

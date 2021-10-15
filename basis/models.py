@@ -4,7 +4,6 @@ from django.utils import timezone
 # Create your models here.
 
 
-
 class Education(models.Model):
     graduated = models.PositiveSmallIntegerField()
     school_name = models.CharField(max_length=255)
@@ -52,3 +51,10 @@ class Messages(models.Model):
 
     def __str__(self):
         return self.sender_email
+
+
+class UploadDocument(models.Model):
+    description = models.CharField(max_length=255, blank=True)
+    document = models.FileField(upload_to='documents/')
+    file_name = models.CharField(max_length=255)
+    date = models.DateTimeField(auto_now_add=True)

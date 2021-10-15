@@ -24,3 +24,8 @@ class ExperienceAdmin(admin.ModelAdmin):
 class MessagesAdmin(admin.ModelAdmin):
     list_display = ('date', 'sender_email', 'name', 'subject')
     list_filter = ('date', )
+
+@admin.register(models.UploadDocument)
+class UploadDocumentAdmin(admin.ModelAdmin):
+    list_display = ('date', 'file_name', 'document')
+    list_filter = ('date', )
