@@ -52,9 +52,10 @@ class Portfolio(models.Model):
     def __str__(self):
         return self.project_name
 
-    def get_absolute_url(self):
-        return reverse('basis:portfolio',
-                       args=[self.slug])
+"""    def get_absolute_url(self):
+        return reverse('basis:detailed_portfolio',
+                       args=[self.slug,
+                             self.project_name])"""
 
 
 class Messages(models.Model):

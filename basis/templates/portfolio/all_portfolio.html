@@ -8,8 +8,9 @@
     {% for portfolio in portfolios %}
         <h2>{{ portfolio.project_name }}</h2>
         <p>
-        {{ portfolio.description }}
+        {{ portfolio.description|truncatewords:5 }}
         </p>
+        <a href="{{ portfolio.get_absolute_url }}">Go to see more information</a>
         <a href="{{ portfolio.link }}">See it on Github</a>
         <hr>
     {% endfor %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ det_portfolio.course_name }}
+{% endblock %}
+
+{% block body %}
+    <a href="{% url 'basis:portfolio' %}">Back to portfolio page</a>
+    <h3>{{ det_portfolio.course_name }}</h3>
+
+    <p>{{ det_portfolio.description }}</p>
+
+
+{% endblock %}

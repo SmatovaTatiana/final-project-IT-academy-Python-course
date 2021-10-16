@@ -48,9 +48,9 @@ def contacts(request):
     return render(request, 'contacts.html')
 
 
-def portfolio(request):
+def all_portfolio(request):
     portfolios = models.Portfolio.objects.all()
-    return render(request, "portfolio.html",
+    return render(request, "portfolio/all_portfolio.html",
                   {'portfolios': portfolios})
 
 
