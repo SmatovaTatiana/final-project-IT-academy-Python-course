@@ -42,6 +42,21 @@ class Experience(models.Model):
                              ])
 
 
+class Portfolio(models.Model):
+    project_name = models.CharField(max_length=255)
+    description = models.TextField(blank=True)
+    link = models.URLField(blank=True)
+    slug = models.SlugField(max_length=255, unique='project_name')
+    date = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.project_name
+
+    def get_absolute_url(self):
+        return reverse('basis:portfolio',
+                       args=[self.slug])
+
+
 class Messages(models.Model):
     name = models.CharField(max_length=100)
     sender_email = models.EmailField()

@@ -48,6 +48,12 @@ def contacts(request):
     return render(request, 'contacts.html')
 
 
+def portfolio(request):
+    portfolios = models.Portfolio.objects.all()
+    return render(request, "portfolio.html",
+                  {'portfolios': portfolios})
+
+
 def contact_form(request):
 
     sent = False

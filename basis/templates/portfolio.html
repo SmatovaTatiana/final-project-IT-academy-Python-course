@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    My portfolio
+{% endblock %}
+
+{% block body %}
+    {% for portfolio in portfolios %}
+        <h2>{{ portfolio.project_name }}</h2>
+        <p>
+        {{ portfolio.description }}
+        </p>
+        <a href="{{ portfolio.link }}">See it on Github</a>
+        <hr>
+    {% endfor %}
+{% endblock %}

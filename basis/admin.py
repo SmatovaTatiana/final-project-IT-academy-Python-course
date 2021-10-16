@@ -25,7 +25,15 @@ class MessagesAdmin(admin.ModelAdmin):
     list_display = ('date', 'sender_email', 'name', 'subject')
     list_filter = ('date', )
 
+
 @admin.register(models.UploadDocument)
 class UploadDocumentAdmin(admin.ModelAdmin):
     list_display = ('date', 'file_name', 'document')
     list_filter = ('date', )
+
+
+@admin.register(models.Portfolio)
+class PortfolioAdmin(admin.ModelAdmin):
+    list_display = ('date', 'project_name', 'description')
+    list_filter = ('date', )
+    prepopulated_fields = {'slug': ('project_name', )}

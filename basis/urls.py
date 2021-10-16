@@ -14,6 +14,7 @@ urlpatterns = [
          name='detailed_experience'),
     path('contact_form/', views.contact_form, name="contact_form"),
     path('upload_documents/', views.document_form_upload, name='upload_documents'),
+    path('portfolio/', views.portfolio, name='portfolio'),
 
 ]
 if settings.DEBUG:
