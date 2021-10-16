@@ -16,6 +16,7 @@ urlpatterns = [
     path('upload_documents/', views.document_form_upload, name='upload_documents'),
     path('all_portfolio/', views.all_portfolio, name='all_portfolio'),
     path('<slug:slug>/<str:project_name>', views.detailed_portfolio, name='detailed_portfolio'),
+    path('login/', views.custom_login, name='login'),
 
 ]
 if settings.DEBUG:

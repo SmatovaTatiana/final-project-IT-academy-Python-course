@@ -5,10 +5,11 @@
 {% endblock %}
 
 {% block body %}
-    <a href="{% url 'basis:all_portfolio' %}">Back to portfolio page</a>
+
     <h3>{{ portfolio.project_name }}</h3>
-    <a href="{{ portfolio.link }}">See it on Github</a>
     <p>{{ portfolio.description }}</p>
+    <a href="{{ portfolio.link }}">See it on Github</a>
+    <p><a href="{% url 'basis:all_portfolio' %}">Back to portfolio page</a></p>
 
 
 {% endblock %}

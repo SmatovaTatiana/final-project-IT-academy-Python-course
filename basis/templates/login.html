@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Login page
+{% endblock %}
+
+{% block body %}
+        <h1>User login:</h1>
+        <form action="." method="post">
+            <!--точка в форме перебрасывает в тот же url, на котором она стоит (в тот же location).
+            Но location считается по / Если / нет, то он килает на его родительский-->
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="Login">
+        </form>
+{% endblock %}

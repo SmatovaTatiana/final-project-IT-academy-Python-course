@@ -12,3 +12,8 @@ class DocumentForm(forms.ModelForm):
     class Meta:
         model = models.UploadDocument
         fields = ('description', 'document')
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput)

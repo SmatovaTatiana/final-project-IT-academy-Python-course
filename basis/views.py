@@ -1,7 +1,11 @@
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from . import models, forms
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -54,6 +58,7 @@ def all_portfolio(request):
                   {'portfolios': portfolios})
 
 
+@login_required  # ограничиваем доступ
 def detailed_portfolio(request, slug, project_name):
     portfolio = get_object_or_404(models.Portfolio,
                                   slug=slug,
@@ -100,3 +105,30 @@ def document_form_upload(request):
     return render(request,
                   'upload_documents.html',
                   {'form': form, 'upload': upload})
+
+
+def custom_login(request):
+    if request.method == "POST":
+        form = forms.LoginForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = authenticate(
+                username=cd['username'],
+                password=cd['password'],
+            )
+            if user is not None:  # используется None, а не if not user т.к. могут быть анонимные юзеры, юзер есть,
+                # но прав нет и т.д. Если использовать if user, могут быть проблемы с незакончившими регистрацию и т.д.
+                if user.is_active:  # флаг. При нормальной регистрации с уведомлением на почту
+                    login(request, user)
+                    # from request берутся данные о клиенте и говорится, что это он этот user, после этого он залогинен
+                    return HttpResponse('logged in')
+                else:
+                    return HttpResponse('User not active')
+            else:
+                return HttpResponse('Bad credentials')
+
+    else:
+        form = forms.LoginForm()
+    return render(request,
+                  'login.html',  # в корне, т.к. к приложению напрямую не относится
+                  {'form': form})
