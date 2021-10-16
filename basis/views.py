@@ -136,3 +136,21 @@ def custom_login(request):
 
 def profile(request):
     return render(request, "profile.html", {'user': request.user})
+
+
+def register(request):
+    if request.method == "POST":
+        form = forms.UserRegistrationForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            new_user = form.save(commit=False)
+            new_user.set_password(cd['password'])
+            new_user.save()
+            models.Profile.objects.create(user=new_user)
+
+            return render(request, "registration_complete.html",
+                          {"user": new_user})
+
+    else:
+        form = forms.UserRegistrationForm()
+        return render(request, "register.html", {'form': form})
