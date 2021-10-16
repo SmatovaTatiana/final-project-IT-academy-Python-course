@@ -9,5 +9,5 @@
     <p>{{ user.email }}</p>
     <br>
        I'm HR {{user.profile.hr}}
-
+    <a href="{% url "basis:edit_profile" %}">edit profile </a><br>
 {% endblock %}

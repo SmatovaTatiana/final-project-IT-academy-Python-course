@@ -5,7 +5,6 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from . import models, forms
-from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -154,3 +153,22 @@ def register(request):
     else:
         form = forms.UserRegistrationForm()
         return render(request, "register.html", {'form': form})
+
+
+def edit_profile(request):
+    if request.method == "POST":
+        user_form = forms.UserEditForm(request.POST, instance=request.user)
+        profile_form = forms.ProfileEditForm(request.POST,
+                                             instance=request.user.profile,
+                                             files=request.FILES)
+        if all((user_form.is_valid(), profile_form.is_valid())):
+            user_form.save()
+            profile_form.save()
+            return render(request, "profile.html", {'user': request.user})
+
+    else:
+        user_form = forms.UserEditForm(instance=request.user)
+        profile_form = forms.ProfileEditForm(request.POST, instance=request.user.profile)
+
+    return render(request, "edit_profile.html", {'user_form': user_form,
+                                                 'profile_form': profile_form})
