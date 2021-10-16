@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'social_django',
     'basis.apps.BasisConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
 ]
 
 MIDDLEWARE = [
@@ -64,6 +66,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -137,7 +141,14 @@ EMAIL_USE_TLS = True
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
-AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.AllowAllUsersModelBackend']
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.AllowAllUsersModelBackend',
+
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.linkedin.LinkedinOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 # login settings
 LOGIN_URL = '/basis/login/'
@@ -145,3 +156,14 @@ LOGIN_REDIRECT_URL = '/basis/' # после входа открывает нач
 
 LOGOUT_URL = '/basis/logout/'
 #LOGOUT_REDIRECT_URL = '/basis/'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '441169157621408'        # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '9cdebda9761fe1aaeaf14e90acc8d1a2'  # App Secret
+
+SOCIAL_AUTH_GITHUB_KEY = 'ffc7fc7c9f42ba9e7b77'        # App ID
+SOCIAL_AUTH_GITHUB_SECRET = '8c69424db17b16e4c09371a2bc0d57d88bb0a190'  # App Secret
+
+SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = '78t1mcz021j6qz'        # App ID
+SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = 'EuRNN06d2q6XdtGE'  # App Secret
+
+

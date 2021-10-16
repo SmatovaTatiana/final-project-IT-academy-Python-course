@@ -18,4 +18,26 @@
     {% endif %}
 
     <a href="{% url "basis:password_reset" %}"> Forgot password? </a><br>
+
+    <ul>
+        <li>
+            <a href="{% url 'social:begin' 'facebook' %}">Sign With Facebook</a>
+        </li>
+    <li>
+            <a href="{% url 'social:begin' 'github' %}">Sign With Github</a>
+        </li>
+        <li>
+            <a href="{% url 'social:begin' 'linkedin-oauth2' %}">Sign With LinkedIn</a>
+        </li>
+    </ul>
+    <div class="row">
+        <div class="col-md-8 mx-auto social-container my-2 order-md-1">
+            <button class="btn btn-primary mb-2">
+                <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
+            </button>
+        <button class="btn btn-info mb-2">
+            <a href="{% url 'social:begin' 'linkedin-oauth2' %}">Login with LinkedIn</a>
+        </button>
+        </div>
+    </div>
 {% endblock %}
