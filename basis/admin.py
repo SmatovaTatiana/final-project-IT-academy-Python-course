@@ -4,6 +4,12 @@ from . import models
 # admin.site.register(models.Education)
 
 
+@admin.register(models.Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'hr', )
+    ordering = ('hr',)
+
+
 @admin.register(models.Education)
 class EducationAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('course_name', )}

@@ -9,7 +9,7 @@
 <body>
 {% if request.user.is_authenticated %}
         <a href="{% url 'basis:logout' %}">logout </a>
-
+        <a href="{% url 'basis:profile' %}">profile </a>
 {% else %}
         <a href="{% url 'basis:login' %}">login </a><br>
 

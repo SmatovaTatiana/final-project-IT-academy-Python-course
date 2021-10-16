@@ -8,6 +8,7 @@ from django.contrib.auth import views as auth_views
 class MyHackedView(auth_views.PasswordResetView):
     success_url = reverse_lazy('basis:password_reset_done')
 
+
 app_name = 'basis'
 urlpatterns = [
     path('', views.index_page, name='index_page'),
@@ -34,6 +35,8 @@ urlpatterns = [
         success_url=reverse_lazy('basis:password_reset_complete'),
     ), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+
+    path('profile/', views.profile, name='profile'),
 
 ]
 if settings.DEBUG:

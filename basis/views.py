@@ -132,3 +132,7 @@ def custom_login(request):
     return render(request,
                   'login.html',  # в корне, т.к. к приложению напрямую не относится
                   {'form': form})
+
+
+def profile(request):
+    return render(request, "profile.html", {'user': request.user})
