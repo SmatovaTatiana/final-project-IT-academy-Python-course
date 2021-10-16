@@ -137,5 +137,11 @@ EMAIL_USE_TLS = True
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
-LOGIN_URL = '/basis/login'
 AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.AllowAllUsersModelBackend']
+
+# login settings
+LOGIN_URL = '/basis/login/'
+LOGIN_REDIRECT_URL = '/basis/' # после входа открывает начальную страницу
+
+LOGOUT_URL = '/basis/logout/'
+#LOGOUT_REDIRECT_URL = '/basis/'

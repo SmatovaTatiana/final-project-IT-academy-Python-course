@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
 
 app_name = 'basis'
 urlpatterns = [
@@ -16,7 +17,9 @@ urlpatterns = [
     path('upload_documents/', views.document_form_upload, name='upload_documents'),
     path('all_portfolio/', views.all_portfolio, name='all_portfolio'),
     path('<slug:slug>/<str:project_name>', views.detailed_portfolio, name='detailed_portfolio'),
-    path('login/', views.custom_login, name='login'),
+#    path('login/', views.custom_login, name='login'),
+    path('login/', auth_views.LoginView.as_view(), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 
 ]
 if settings.DEBUG:

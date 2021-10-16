@@ -5,10 +5,15 @@
 {% endblock %}
 
 {% block body %}
+    {% if form.errors %}
+        ERROR (check your credentials)
+    {% else %}
         <h1>User login:</h1>
         <form action="." method="post">
             {{ form.as_p }}
             {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}">
             <input type="submit" value="Login">
         </form>
+    {% endif %}
 {% endblock %}
