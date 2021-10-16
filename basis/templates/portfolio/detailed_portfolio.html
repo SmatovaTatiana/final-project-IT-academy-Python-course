@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ portfolio.project_name }}
+{% endblock %}
+
+{% block body %}
+    <a href="{% url 'basis:all_portfolio' %}">Back to portfolio page</a>
+    <h3>{{ portfolio.project_name }}</h3>
+    <a href="{{ portfolio.link }}">See it on Github</a>
+    <p>{{ portfolio.description }}</p>
+
+
+{% endblock %}

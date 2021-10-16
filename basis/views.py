@@ -54,6 +54,14 @@ def all_portfolio(request):
                   {'portfolios': portfolios})
 
 
+def detailed_portfolio(request, slug, project_name):
+    portfolio = get_object_or_404(models.Portfolio,
+                                  slug=slug,
+                                  project_name=project_name)
+    return render(request, "portfolio/detailed_portfolio.html",
+                  {'portfolio': portfolio})
+
+
 def contact_form(request):
 
     sent = False
