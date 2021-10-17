@@ -152,10 +152,10 @@ AUTHENTICATION_BACKENDS = [
 
 # login settings
 LOGIN_URL = '/basis/login/'
-LOGIN_REDIRECT_URL = '/basis/' # после входа открывает начальную страницу
+LOGIN_REDIRECT_URL = '/basis/'  # после входа открывает начальную страницу
 
 LOGOUT_URL = '/basis/logout/'
-#LOGOUT_REDIRECT_URL = '/basis/'
+# LOGOUT_REDIRECT_URL = '/basis/'
 
 SOCIAL_AUTH_FACEBOOK_KEY = '441169157621408'        # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = '9cdebda9761fe1aaeaf14e90acc8d1a2'  # App Secret
@@ -163,7 +163,5 @@ SOCIAL_AUTH_FACEBOOK_SECRET = '9cdebda9761fe1aaeaf14e90acc8d1a2'  # App Secret
 SOCIAL_AUTH_GITHUB_KEY = 'ffc7fc7c9f42ba9e7b77'        # App ID
 SOCIAL_AUTH_GITHUB_SECRET = '8c69424db17b16e4c09371a2bc0d57d88bb0a190'  # App Secret
 
-SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = '78t1mcz021j6qz'        # App ID
-SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = 'EuRNN06d2q6XdtGE'  # App Secret
-
-
+SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = '78pro9uxsyejr3'        # App ID
+SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = 'BuljHeHqC2QRihao'  # App Secret
