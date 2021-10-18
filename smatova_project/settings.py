@@ -157,6 +157,7 @@ LOGIN_REDIRECT_URL = '/basis/'  # после входа открывает на�
 LOGOUT_URL = '/basis/logout/'
 # LOGOUT_REDIRECT_URL = '/basis/'
 
+SOCIAL_AUTH_FACEBOOK_API_VERSION = '2.11'
 SOCIAL_AUTH_FACEBOOK_KEY = '441169157621408'        # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = '9cdebda9761fe1aaeaf14e90acc8d1a2'  # App Secret
 
