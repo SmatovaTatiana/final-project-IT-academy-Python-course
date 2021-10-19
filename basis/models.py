@@ -85,3 +85,11 @@ class Profile(models.Model):
 
     def __str__(self):
         return str(self.user)
+
+
+class TopNews(models.Model):
+    title = models.CharField(max_length=300)
+    body = models.TextField()
+    link = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    slug = models.SlugField(max_length=300, unique='project_name', default='')

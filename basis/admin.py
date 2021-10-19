@@ -43,3 +43,9 @@ class PortfolioAdmin(admin.ModelAdmin):
     list_display = ('date', 'project_name', 'description')
     list_filter = ('date', )
     prepopulated_fields = {'slug': ('project_name', )}
+
+
+@admin.register(models.TopNews)
+class TopNewsDocumentAdmin(admin.ModelAdmin):
+    list_display = ('created', 'title', 'link')
+    prepopulated_fields = {'slug': ('title',)}
