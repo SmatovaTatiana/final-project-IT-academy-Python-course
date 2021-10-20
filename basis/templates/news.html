@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    News
+{% endblock %}
+{% block body %}
+    <h1>Last news</h1>
+    {% for news in today_news%}
+        <h3>{{ news.title }}</h3>
+        <a href="{{ news.link }}">To read news</a>
+        <p>
+              {{ news.created }}
+        </p>
+
+        <hr>
+    {% endfor %}
+
+{% endblock %}
