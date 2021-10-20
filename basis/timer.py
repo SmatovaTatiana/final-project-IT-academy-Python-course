@@ -1,14 +1,14 @@
-# https://medium.com/greedygame-engineering/an-elegant-way-to-run-periodic-tasks-in-python-61b7c477b679
-
 import signal
 import threading
 import time
 from datetime import timedelta
 
 from basis.scrapper import run_scrapper
+from basis.mailing import send_email
 
 TASK_EXECUTION_INTERVAL = 10  # seconds
 NO_SLEEP_INTERVAL = 0  # seconds
+TASK_EXECUTION_DELAY = 5  # seconds
 
 
 class ProgramKilled(Exception):
@@ -58,4 +58,5 @@ def run_task(interval, func):
             break
 
 
-run_task(TASK_EXECUTION_INTERVAL, run_scrapper)
+#run_task(TASK_EXECUTION_INTERVAL, run_scrapper)
+run_task(TASK_EXECUTION_INTERVAL + TASK_EXECUTION_DELAY, send_email)

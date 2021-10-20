@@ -161,7 +161,7 @@ def edit_profile(request):
         user_form = forms.UserEditForm(request.POST, instance=request.user)
         profile_form = forms.ProfileEditForm(request.POST,
                                              instance=request.user.profile,
-                                             files=request.FILES)
+                                             )
         if all((user_form.is_valid(), profile_form.is_valid())):
             user_form.save()
             profile_form.save()

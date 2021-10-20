@@ -6,8 +6,9 @@
 
 {% block body %}
     <p>{{ user.user }}</p>
-    <p>{{ user.email }}</p>
+    <p>my e-mail: {{ user.email }}</p>
     <br>
-       I'm HR {{user.profile.hr}}
+    i have subscribes: {{ profiles }}
+
     <a href="{% url "basis:edit_profile" %}">edit profile </a><br>
 {% endblock %}

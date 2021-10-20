@@ -45,5 +45,5 @@ class UserEditForm(forms.ModelForm):
 class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = models.Profile
-        fields = ('hr', )
+        fields = ('subscribed_for_mailings', 'subscription_email', )
 

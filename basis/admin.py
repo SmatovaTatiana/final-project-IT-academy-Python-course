@@ -6,8 +6,8 @@ from . import models
 
 @admin.register(models.Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'hr', )
-    ordering = ('hr',)
+    list_display = ('user', 'subscribed_for_mailings', 'subscription_email', )
+    ordering = ('user',)
 
 
 @admin.register(models.Education)
