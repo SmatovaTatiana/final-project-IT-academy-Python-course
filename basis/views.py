@@ -1,11 +1,12 @@
-from django.contrib.auth import authenticate, login
+from datetime import date
+from django.contrib.auth import authenticate
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.http import HttpResponse
-from django.shortcuts import render
 from django.shortcuts import get_object_or_404
+from django.shortcuts import render
 from . import models, forms
-
 
 # Create your views here.
 
@@ -172,3 +173,10 @@ def edit_profile(request):
 
     return render(request, "edit_profile.html", {'user_form': user_form,
                                                  'profile_form': profile_form})
+
+
+def all_news(request):
+    today = date.today()
+    today_news = models.TopNews.objects.filter(created__gte=today)
+    return render(request, "news.html",
+                  {'today_news': today_news})
