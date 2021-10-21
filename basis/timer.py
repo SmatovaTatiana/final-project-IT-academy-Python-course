@@ -1,22 +1,22 @@
+import datetime
 import signal
 import threading
 import time
+from datetime import datetime
 from datetime import timedelta
 
-from basis.scrapper import run_scrapper
-from basis.mailing import send_email
+from basis.scheduler import run_scheduled_jobs
 
-TASK_EXECUTION_INTERVAL = 10  # seconds
-NO_SLEEP_INTERVAL = 0  # seconds
-TASK_EXECUTION_DELAY = 5  # seconds
+TASK_DELAY_INTERVAL_24_HOURS = 86400   # seconds, for production
+TASK_DELAY_INTERVAL_10_MINUTES = 600    # for debug
+TASK_NO_DELAY_INTERVAL = 0    # seconds
+SLEEP_INTERVAL = 5  # seconds
+START_AT_HOUR = 19
+START_AT_MINUTE = 21
 
 
 class ProgramKilled(Exception):
     pass
-
-
-def foo():
-    print(time.ctime())
 
 
 def signal_handler(signum, frame):
@@ -43,20 +43,24 @@ class Job(threading.Thread):
 
 
 def run_task(interval, func):
+    print("Timer: run task started at ", datetime.now(), '.\n')
     if __name__ == "__main__":
         signal.signal(signal.SIGTERM, signal_handler)
         signal.signal(signal.SIGINT, signal_handler)
         job = Job(interval=timedelta(seconds=interval), execute=func)
-        job.start()
 
+        while datetime.now().time().hour != START_AT_HOUR or datetime.now().time().minute != START_AT_MINUTE:
+            time.sleep(SLEEP_INTERVAL)
+        job.start()
+        print("Timer: job called at ", datetime.now(), 'with task interval 24 hours (', TASK_DELAY_INTERVAL_24_HOURS,
+              ') seconds.\n')
     while True:
         try:
-            time.sleep(NO_SLEEP_INTERVAL)
+            time.sleep(SLEEP_INTERVAL)
         except ProgramKilled:
-            print("Program killed: stopping tasks")
+            print("Program killed: stopping tasks at ", datetime.now(), '.\n')
             job.stop()
             break
 
 
-#run_task(TASK_EXECUTION_INTERVAL, run_scrapper)
-run_task(TASK_EXECUTION_INTERVAL + TASK_EXECUTION_DELAY, send_email)
+run_task(TASK_DELAY_INTERVAL_10_MINUTES, run_scheduled_jobs)

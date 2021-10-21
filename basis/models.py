@@ -94,4 +94,4 @@ class TopNews(models.Model):
     body = models.TextField()
     link = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
-    slug = models.SlugField(max_length=300, unique='project_name', default='')
+    slug = models.SlugField(max_length=300, unique='title', default='')

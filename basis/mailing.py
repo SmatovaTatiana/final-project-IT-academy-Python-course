@@ -1,6 +1,8 @@
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from smtplib import SMTP
+import datetime
+from datetime import datetime
 from basis.dal import get_recipients
 from basis.dal import get_content
 
@@ -9,9 +11,26 @@ cc = 'stv_stv@tut.by'
 subject = "Daily news"
 
 
+def format_content():
+    content = get_content()
+    body = ''
+    lines = content.split(',')
+    cnt = 0
+    for line in lines:
+        if line:
+            line += '\n'
+            cnt += 1
+            if cnt == 2:
+                line += '\n'
+                cnt = 0
+            body += line
+
+    return body
+
+
 def create_message():
     recipients = get_recipients()
-    content = get_content()
+    content = format_content()
     msg = MIMEMultipart()
     msg["Subject"] = subject
     msg["From"] = sender
@@ -23,6 +42,7 @@ def create_message():
 
 
 def send_email():
+    print("Mailing started at ", datetime.now(), '.\n')
     message = create_message()
     try:
         server = SMTP('smtp.gmail.com:587')
@@ -30,11 +50,10 @@ def send_email():
         server.login('tatsm.reg@gmail.com', 'TatSmReg2019*')
         server.sendmail(message["From"], message["To"].split(",") + message["Cc"].split(","), message.as_string())
         server.quit()
-        print("Mail sent successfully")
+        print("News sent successfully at ", datetime.now(), '.\n')
         return True
     except Exception as ex:
-        print("Mail sent failed")
-        print(ex)
+        print('News send failed', ex, '\n')
         return False
 
 #success = send_email()

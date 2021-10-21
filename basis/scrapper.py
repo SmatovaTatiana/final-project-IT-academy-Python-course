@@ -1,7 +1,10 @@
 # https://stackoverflow.com/questions/8047204/django-script-to-access-model-objects-without-using-manage-py-shell
 
 # https://stackoverflow.com/questions/25537905/django-1-7-throws-django-core-exceptions-appregistrynotready-models-arent-load/26215548#26215548
+import datetime
+from datetime import datetime
 import os
+import requests
 from django.core.wsgi import get_wsgi_application
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'smatova_project.settings'
@@ -17,12 +20,12 @@ NUMBER_OF_NEWS_TO_SHOW = 5
 
 
 def run_scrapper():
+    print("Scrapper. Run scrapper started at ", datetime.now(), '.\n')
     url = "https://dev.by/news"
     page = requests.get(url)
 
     soup = BeautifulSoup(page.content, "html.parser")
     news_list = soup.find_all("div", class_="card__body")
-    #articles_list = []
 
     for i in range(NUMBER_OF_NEWS_TO_SHOW):
         new_article = news_list[i]
@@ -38,10 +41,9 @@ def run_scrapper():
 
         try:
             new_news.save()
-            print(new_news.title + ' inserted')
-            #articles_list.append(new_news)
-        except:
-            dummy = 0
-            print(new_news.title + ' exist in DB')
+        except Exception as ex:
+            print('Scrapper. ', ex, '\n')
 
-        #return articles_list
+    print("Scrapper. News saved at ", datetime.now(), '.\n')
+
+#run_scrapper()

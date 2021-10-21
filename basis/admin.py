@@ -46,6 +46,6 @@ class PortfolioAdmin(admin.ModelAdmin):
 
 
 @admin.register(models.TopNews)
-class TopNewsDocumentAdmin(admin.ModelAdmin):
+class TopNewsAdmin(admin.ModelAdmin):
     list_display = ('created', 'title', 'link')
     prepopulated_fields = {'slug': ('title',)}
