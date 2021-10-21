@@ -147,6 +147,7 @@ AUTHENTICATION_BACKENDS = [
     'social_core.backends.facebook.FacebookOAuth2',
     'social_core.backends.github.GithubOAuth2',
     'social_core.backends.linkedin.LinkedinOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 ]
 
@@ -157,12 +158,15 @@ LOGIN_REDIRECT_URL = '/basis/'  # после входа открывает на�
 LOGOUT_URL = '/basis/logout/'
 # LOGOUT_REDIRECT_URL = '/basis/'
 
-SOCIAL_AUTH_FACEBOOK_API_VERSION = '2.11'
+"""SOCIAL_AUTH_FACEBOOK_API_VERSION = '2.11'
 SOCIAL_AUTH_FACEBOOK_KEY = '441169157621408'        # App ID
-SOCIAL_AUTH_FACEBOOK_SECRET = '9cdebda9761fe1aaeaf14e90acc8d1a2'  # App Secret
+SOCIAL_AUTH_FACEBOOK_SECRET = '9cdebda9761fe1aaeaf14e90acc8d1a2'  # App Secret"""
 
 SOCIAL_AUTH_GITHUB_KEY = 'ffc7fc7c9f42ba9e7b77'        # App ID
 SOCIAL_AUTH_GITHUB_SECRET = '8c69424db17b16e4c09371a2bc0d57d88bb0a190'  # App Secret
 
 SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = '78pro9uxsyejr3'        # App ID
 SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = 'BuljHeHqC2QRihao'  # App Secret
+
+"""SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '874223044106-0nqhbv3hvrl2nm7v9kn4gk7jild3kvcs.apps.googleusercontent.com'        # App ID
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'  # App Secret"""
