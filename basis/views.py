@@ -8,7 +8,6 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from . import models, forms
 
-
 SUBJECT = ' {name} sent you a message.'
 BODY = '{message}'
 
@@ -43,6 +42,8 @@ def detailed_experience(request, slug, company_name, position):
 
 
 def index_page(request):
+    if request.user.is_superuser:
+        return render(request, 'index_master.html')
     return render(request, 'index.html')
 
 
@@ -66,7 +67,6 @@ def detailed_portfolio(request, slug, project_name):
 
 
 def contact_form(request):
-
     sent = False
 
     if request.method == 'POST':
@@ -181,8 +181,8 @@ def all_news(request):
 def mailing_news(request):
     if request.method == "POST":
         mailing_form = forms.MailingForm(request.POST,
-                                             instance=request.user.profile,
-                                             )
+                                         instance=request.user.profile,
+                                         )
         if mailing_form.is_valid():
             mailing_news = mailing_form.save(commit=False)
             mailing_news.subscribed_for_mailings = mailing_news.subscribed_for_mailings
@@ -194,3 +194,9 @@ def mailing_news(request):
     else:
         mailing_form = forms.MailingForm()
     return render(request, 'subscribe.html', {"mailing_form": mailing_form})
+
+
+def all_messages(request):
+    messages = models.Messages.objects.all()
+    return render(request, "messages.html",
+                  {'messages': messages})

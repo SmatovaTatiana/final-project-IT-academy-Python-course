@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Messages for me
+{% endblock %}
+{% block body %}
+    {% for text in messages%}
+        <h3>{{ text.name }}</h3>
+        <p>
+        {{ text.sender_email }}
+        <br>
+         {{ text.message }}
+        </p>
+
+        <hr>
+    {% endfor %}
+
+{% endblock %}

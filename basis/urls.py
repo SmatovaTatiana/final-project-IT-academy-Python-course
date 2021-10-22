@@ -20,6 +20,8 @@ urlpatterns = [
          name='detailed_experience'),
 
     path('contact_form/', views.contact_form, name="contact_form"),
+    path('messages/', views.all_messages, name='all_messages'),
+
     path('upload_documents/', views.document_form_upload, name='upload_documents'),
 
     path('all_portfolio/', views.all_portfolio, name='all_portfolio'),
