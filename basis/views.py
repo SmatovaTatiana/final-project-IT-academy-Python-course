@@ -9,7 +9,8 @@ from django.shortcuts import render
 from . import models, forms
 
 # Create your views here.
-
+from .forms import MailingForm
+from .models import Profile
 
 SUBJECT = ' {name} sent you a message.'
 BODY = '{message}'
@@ -116,11 +117,9 @@ def custom_login(request):
                 username=cd['username'],
                 password=cd['password'],
             )
-            if user is not None:  # используется None, а не if not user т.к. могут быть анонимные юзеры, юзер есть,
-                # но прав нет и т.д. Если использовать if user, могут быть проблемы с незакончившими регистрацию и т.д.
-                if user.is_active:  # флаг. При нормальной регистрации с уведомлением на почту
+            if user is not None:
+                if user.is_active:
                     login(request, user)
-                    # from request берутся данные о клиенте и говорится, что это он этот user, после этого он залогинен
                     return HttpResponse('logged in')
                 else:
                     return HttpResponse('User not active')
@@ -136,6 +135,7 @@ def custom_login(request):
 
 def profile(request):
     return render(request, "profile.html", {'user': request.user})
+
 
 
 def register(request):
@@ -180,3 +180,14 @@ def all_news(request):
     today_news = models.TopNews.objects.filter(created__gte=today)
     return render(request, "news.html",
                   {'today_news': today_news})
+
+
+def mailing_news(request):
+    if request.method == 'POST':
+        mailing_form = forms.MailingForm(request.POST, instance=request.user.profile)
+        if mailing_form.is_valid():
+            mailing_form.save()
+            return HttpResponse('You will receive news by mail')
+    else:
+        mailing_form = forms.MailingForm(instance=request.user.profile)
+        return render(request, "news.html", {'mailing_form': mailing_form})

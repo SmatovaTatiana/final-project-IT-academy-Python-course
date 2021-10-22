@@ -47,3 +47,12 @@ class ProfileEditForm(forms.ModelForm):
         model = models.Profile
         fields = ('subscribed_for_mailings', 'subscription_email', )
 
+
+class MailingForm(forms.ModelForm):
+    class Meta:
+        model = models.Profile
+        fields = ('subscription_email', 'subscribed_for_mailings', )
+        widgets = {
+            'subscription_email': forms.EmailInput(attrs={"placeholder": "Your Email..."}),
+            'subscribed_for_mailings': forms.CheckboxInput,
+        }
