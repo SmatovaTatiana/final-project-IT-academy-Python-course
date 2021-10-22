@@ -6,9 +6,14 @@
 
 {% block body %}
     <p>{{ user.user }}</p>
-    <p>my e-mail: {{ user.email }}</p>
-    <br>
-    i have subscribes: {{ profiles }}
-
+    <p>Hello, {{ user.username }} !</p>
+    <p>your e-mail: {{ user.email }}</p>
+    <p>Subscription email: {{ user.profile.subscription_email }}</p>
+    <p>Subscribed for news:  {% if user.profile.subscribed_for_mailings is True %}
+            Yes
+        {% else %}
+            No
+        {% endif %}
+    </p>
     <a href="{% url "basis:edit_profile" %}">edit profile </a><br>
 {% endblock %}
