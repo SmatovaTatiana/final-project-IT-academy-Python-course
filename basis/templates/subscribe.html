@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Subscribe
+{% endblock %}
+
+{% block body %}
+        <form action="." method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ mailing_news.as_p }}
+                {% if user.profile.subscribed_for_mailings is True %}
+                    <input type="checkbox" name="subscribed_for_mailings" id="id_subscribed_for_mailings" checked="">
+                    If you don't want to receive emails anymore, uncheck
+                    <br>
+                    Subscription email: <input type="email" name="subscription_email" value={{ user.profile.subscription_email }} class="vTextField" maxlength="254" id="id_subscription_email">
+                {% else %}
+                    <label>
+                        <input type="checkbox" name="subscribed_for_mailings" id="id_subscribed_for_mailings">
+                        I want to subscribe for mailing news
+                    </label>
+                    <p><label>
+                        Send news on my email:
+                        <input type="email" name="subscription_email" class="vTextField" maxlength="254" id="id_subscription_email">
+                    </label></p>
+
+                {% endif %}
+            <p><input type="submit" value="Update"></p>
+        </form>
+
+{% endblock %}

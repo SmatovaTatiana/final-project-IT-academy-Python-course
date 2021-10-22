@@ -42,6 +42,8 @@ urlpatterns = [
     path('register/', views.register, name='register'),
 
     path('news/', views.all_news, name='all_news'),
+    path('subscribe/', views.mailing_news, name='subscribe')
+
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

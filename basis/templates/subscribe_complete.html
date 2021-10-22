@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Subscribing complete
+{% endblock %}
+
+{% block body %}
+    <h1>Hi {{ user.username }}</h1>
+
+    Thanks for subscribing.
+    You will receive daily news by email: {{ user.profile.subscription_email }}
+
+{% endblock %}

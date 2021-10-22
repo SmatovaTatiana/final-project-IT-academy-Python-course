@@ -8,9 +8,6 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from . import models, forms
 
-# Create your views here.
-from .forms import MailingForm
-from .models import Profile
 
 SUBJECT = ' {name} sent you a message.'
 BODY = '{message}'
@@ -137,7 +134,6 @@ def profile(request):
     return render(request, "profile.html", {'user': request.user})
 
 
-
 def register(request):
     if request.method == "POST":
         form = forms.UserRegistrationForm(request.POST)
@@ -166,7 +162,6 @@ def edit_profile(request):
             user_form.save()
             profile_form.save()
             return render(request, "profile.html", {'user': request.user})
-
     else:
         user_form = forms.UserEditForm(instance=request.user)
         profile_form = forms.ProfileEditForm(request.POST, instance=request.user.profile)
@@ -182,12 +177,20 @@ def all_news(request):
                   {'today_news': today_news})
 
 
+@login_required
 def mailing_news(request):
-    if request.method == 'POST':
-        mailing_form = forms.MailingForm(request.POST, instance=request.user.profile)
+    if request.method == "POST":
+        mailing_form = forms.MailingForm(request.POST,
+                                             instance=request.user.profile,
+                                             )
         if mailing_form.is_valid():
-            mailing_form.save()
-            return HttpResponse('You will receive news by mail')
+            mailing_news = mailing_form.save(commit=False)
+            mailing_news.subscribed_for_mailings = mailing_news.subscribed_for_mailings
+            mailing_news.subscription_email = mailing_news.subscription_email
+            mailing_news.save()
+
+            return render(request, "subscribe_complete.html",
+                          {"mailing_news": mailing_news})
     else:
-        mailing_form = forms.MailingForm(instance=request.user.profile)
-        return render(request, "news.html", {'mailing_form': mailing_form})
+        mailing_form = forms.MailingForm()
+    return render(request, 'subscribe.html', {"mailing_form": mailing_form})

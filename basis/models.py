@@ -82,8 +82,8 @@ class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
                                 on_delete=models.CASCADE)
     hr = models.BooleanField(default=False)
-    subscribed_for_mailings = models.BooleanField(default=False)
-    subscription_email = models.EmailField(default="")
+    subscribed_for_mailings = models.BooleanField(default=False, blank=True)
+    subscription_email = models.EmailField(default="", blank=True)
 
     def __str__(self):
         return str(self.user)

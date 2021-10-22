@@ -8,20 +8,9 @@
     {% for news in today_news%}
         <h3>{{ news.title }}</h3>
         <a href="{{ news.link }}">Read this news</a>
-        <p>
-
-        </p>
+        <hr>
     {% endfor %}
 
-<h4>I want to receive news by mail</h4>
-        <form action="." method="post">
-            {{ mailing_form.as_p }}
-            {% csrf_token %}
-            <label>
-                <input type="submit" value="Subscribe">
-            </label>
-        </form>
-        <hr>
-
+<a href="{% url 'basis:subscribe' %}">I want to receive news by mail</a>
 
 {% endblock %}
