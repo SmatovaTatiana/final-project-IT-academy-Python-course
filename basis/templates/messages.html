@@ -7,7 +7,7 @@
     {% for text in messages%}
         <h3>{{ text.name }}</h3>
         <p>
-        {{ text.sender_email }}
+        {{ text.sender_email }}, {{ text.date }}
         <br>
          {{ text.message }}
         </p>
