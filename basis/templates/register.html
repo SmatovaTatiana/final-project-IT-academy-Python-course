@@ -5,7 +5,8 @@ Register user
 {% endblock %}
 
 {% block body %}
-        <h1>Fill the fields</h1>
+        <h3>For registration, please, fill the fields:</h3>
+    <br>
         <form action="" method="post">
             {{ form.as_p }}
             {% csrf_token %}

@@ -46,4 +46,4 @@ def run_scrapper():
 
     print("Scrapper. News saved at ", datetime.now(), '.\n')
 
-#run_scrapper()
+# run_scrapper()

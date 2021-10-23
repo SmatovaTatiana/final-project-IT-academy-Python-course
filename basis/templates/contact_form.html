@@ -5,7 +5,7 @@
 <!-- -->
 {% block body %}
     {% if not sent %}  <!--добавляем флаг (добавлено во вьюшку) если не было отправлено, открываем форму-->
-        <h1>Send message</h1>
+        <h2>Send message</h2>
         <form action="." method="post">
             {{ form.as_p }}
             {% csrf_token %}

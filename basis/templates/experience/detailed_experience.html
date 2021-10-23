@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <a href="{% url 'basis:all_experience' %}">Back to experience page</a>
+
     <h2>{{ experience.position }}</h2>
     <h3>{{ experience.company_name }}</h3>
     <p>{{ experience.industry }}</p>
@@ -17,5 +17,6 @@
         {% endif %}
     </p>
     <p>{{ experience.description }}</p>
-
+    <br>
+    <a href="{% url 'basis:all_experience' %}">Back to experience page</a>
 {% endblock %}

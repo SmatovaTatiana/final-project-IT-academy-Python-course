@@ -11,33 +11,35 @@
     <link href="{% static "style.css" %}" rel="stylesheet" type="text/css">
 </head>
 <body>
-<header>
+<header><a href="{% url 'basis:index_page' %}">Main page</a>
+<div>
     {% if request.user.is_authenticated %}
-            <a href="{% url 'basis:logout' %}">logout </a>
+            <a href="{% url 'basis:logout' %}">logout </a><br>
             <a href="{% url 'basis:profile' %}">profile </a>
     {% else %}
             <a href="{% url 'basis:login' %}">login </a><br>
             <a href="{% url 'basis:register' %}">register </a><br>
     {% endif %}
-<br><a href="{% url 'basis:index_page' %}">Main page</a>
+</div>
 </header>
+
 <div class="container-flex">
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-2">
             {% block menu %}{% endblock %}
         </div>
-        <div class="col-sm-9">
+        <div class="col-sm-10">
             {% block body %}{% endblock %}
 
         </div>
     </div>
     {# footer #}
     <div class="row">
-        <div class="col-sm-3">
-            Python web development
+        <div class="col-sm-3" >
+            <small><i>Python web development</i></small>
         </div>
         <div class="col-sm-9">
-            Smatova Tatiana
+            <small><i>Smatova Tatiana</i></small>
 
         </div>
     </div>
