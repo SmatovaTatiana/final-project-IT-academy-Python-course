@@ -26,7 +26,7 @@ class Education(models.Model):
 
 class Experience(models.Model):
     start_date = models.PositiveSmallIntegerField()
-    end_date = models.PositiveSmallIntegerField()
+    end_date = models.PositiveSmallIntegerField(null=True, blank=True)
     company_name = models.CharField(max_length=255)
     position = models.CharField(max_length=255)
     description = models.TextField(blank=True)
