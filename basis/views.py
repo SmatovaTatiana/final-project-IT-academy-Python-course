@@ -13,7 +13,7 @@ BODY = '{message}'
 
 
 def all_education(request):
-    educations = models.Education.objects.all()
+    educations = models.Education.objects.order_by('-graduated')
     return render(request, "education/all_education.html",
                   {'educations': educations})
 
@@ -27,7 +27,7 @@ def detailed_education(request, slug, graduated):
 
 
 def all_experience(request):
-    experiences = models.Experience.objects.all()
+    experiences = models.Experience.objects.order_by('-start_date')
     return render(request, "experience/all_experience.html",
                   {'experiences': experiences})
 

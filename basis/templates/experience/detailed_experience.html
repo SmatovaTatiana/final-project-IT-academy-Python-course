@@ -10,7 +10,12 @@
     <h3>{{ experience.company_name }}</h3>
     <p>{{ experience.industry }}</p>
     <p>Start work in {{ experience.start_date }}</p>
-    <p>End work in {{ experience.end_date }}</p>
+    <p>{% if experience.end_date is None %}
+            Work here in present time
+        {% else %}
+            End work in {{ experience.end_date }}
+        {% endif %}
+    </p>
     <p>{{ experience.description }}</p>
 
 {% endblock %}

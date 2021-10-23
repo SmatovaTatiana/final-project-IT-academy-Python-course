@@ -11,7 +11,12 @@
         <p>
         {{ experience.description|truncatewords:5 }}
         <br>
-        From: {{ experience.start_date }} till: {{ experience.end_date }}
+        From: {{ experience.start_date }} till:
+            {% if experience.end_date is None %}
+                present time
+            {% else %}
+                {{ experience.end_date }}
+            {% endif %}
         </p>
         <a href="{{ experience.get_absolute_url }}">Go to see more information</a>
         <hr>
