@@ -1,10 +1,6 @@
-# https://stackoverflow.com/questions/8047204/django-script-to-access-model-objects-without-using-manage-py-shell
-
-# https://stackoverflow.com/questions/25537905/django-1-7-throws-django-core-exceptions-appregistrynotready-models-arent-load/26215548#26215548
 import datetime
 from datetime import datetime
 import os
-import requests
 from django.core.wsgi import get_wsgi_application
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'smatova_project.settings'

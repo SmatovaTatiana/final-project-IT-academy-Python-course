@@ -6,12 +6,10 @@ from datetime import datetime
 from datetime import timedelta
 
 
-from basis.scheduler import run_scheduled_jobs
-
-TASK_DELAY_INTERVAL_24_HOURS = 86400   # seconds, for production
-TASK_DELAY_INTERVAL_1_MINUTE = 60    # for debug
-TASK_NO_DELAY_INTERVAL = 0    # seconds
-SLEEP_INTERVAL = 5  # seconds
+TASK_DELAY_INTERVAL_24_HOURS = 86400
+TASK_DELAY_INTERVAL_1_MINUTE = 60
+TASK_NO_DELAY_INTERVAL = 0
+SLEEP_INTERVAL = 5
 START_AT_HOUR = 12
 START_AT_MINUTE = 0
 
@@ -49,7 +47,6 @@ def run_task(interval, func):
         signal.signal(signal.SIGTERM, signal_handler)
         signal.signal(signal.SIGINT, signal_handler)
         job = Job(interval=timedelta(seconds=interval), execute=func)
-        # To provide exact task execution time, with no matter when timer started.
         # while datetime.now().time().hour != START_AT_HOUR or datetime.now().time().minute != START_AT_MINUTE:
         #    time.sleep(SLEEP_INTERVAL)
         job.start()
