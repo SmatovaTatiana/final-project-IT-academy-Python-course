@@ -153,10 +153,10 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # login settings
-LOGIN_URL = '/basis/login/'
-LOGIN_REDIRECT_URL = '/basis/'  # после входа открывает начальную страницу
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'  # после входа открывает начальную страницу
 
-LOGOUT_URL = '/basis/logout/'
+LOGOUT_URL = '/logout/'
 # LOGOUT_REDIRECT_URL = '/basis/'
 
 """SOCIAL_AUTH_FACEBOOK_API_VERSION = '2.11'
@@ -171,3 +171,12 @@ SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = 'BuljHeHqC2QRihao'  # App Secret
 
 """SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '874223044106-0nqhbv3hvrl2nm7v9kn4gk7jild3kvcs.apps.googleusercontent.com'        # App ID
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'  # App Secret"""
+
+REDIS_HOST = '127.0.0.1'
+REDIS_PORT = '6379'
+CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
+CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_BROKER_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'

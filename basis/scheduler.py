@@ -20,7 +20,7 @@ from basis.scrapper import run_scrapper
 
 s = sched.scheduler(time.time, time.sleep)
 
-DELAY = 30   # seconds
+DELAY = 10   # seconds
 NO_DELAY = 0
 HIGH_PRIORITY = 1
 LOW_PRIORITY = 2
@@ -34,4 +34,4 @@ def run_scheduled_jobs():
     print("Scheduler run jobs finished at ", datetime.now(), '.\n')
 
 
-# run_scheduled_jobs()
+#run_scheduled_jobs()

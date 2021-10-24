@@ -1,5 +1,4 @@
 from datetime import date
-from multiprocessing import Pool
 
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
@@ -10,9 +9,9 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from basis import models, forms
 from .scheduler import run_scheduled_jobs
-from .timer import run_task
-from multiprocessing import Pool
-import asyncio
+from .timer import run_task, TASK_DELAY_INTERVAL_10_MINUTES
+
+from .tasks import run_background
 
 SUBJECT = ' {name} sent you a message.'
 BODY = '{message}'
@@ -48,7 +47,6 @@ def detailed_experience(request, slug, company_name, position):
 
 
 def index_page(request):
-    call_services()
     if request.user.is_superuser:
         return render(request, 'index_master.html')
     return render(request, 'index.html')
@@ -209,17 +207,6 @@ def all_messages(request):
                   {'messages': messages})
 
 
-async def call_services():
-    # Start scheduled services here
-    # https://stackoverflow.com/questions/1239035/asynchronous-method-call-in-python
-    TASK_DELAY_INTERVAL_24_HOURS = 86400  # seconds, for production
-    TASK_DELAY_INTERVAL_10_MINUTES = 600  # for debug
-    # run_task(TASK_DELAY_INTERVAL_10_MINUTES, run_scheduled_jobs)
-
-    # if _name_ == '__main__':
-        # Start a worker processes.
-    pool = Pool(processes=1)
-        # Evaluate "run_task(TASK_DELAY_INTERVAL_10_MINUTES, run_scheduled_jobs)" asynchronously
-        # [calling callback when finished].
-        # apply_async(func[, args[, kwds[, callback]]])
-    pool.apply_async(run_task, [TASK_DELAY_INTERVAL_10_MINUTES, run_scheduled_jobs])
+def run_services(request):
+    run_background.delay()
+    return render(request, "base.html")

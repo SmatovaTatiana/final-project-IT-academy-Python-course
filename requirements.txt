@@ -4,3 +4,5 @@ social-auth-app-django==5.0.0
 social-auth-core==4.1.0
 beautifulsoup4==4.10.0
 requests==2.26.0
+celery==5.1.2
+redis==3.5.3

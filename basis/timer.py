@@ -5,14 +5,15 @@ import time
 from datetime import datetime
 from datetime import timedelta
 
+
 from basis.scheduler import run_scheduled_jobs
 
 TASK_DELAY_INTERVAL_24_HOURS = 86400   # seconds, for production
-TASK_DELAY_INTERVAL_10_MINUTES = 600    # for debug
+TASK_DELAY_INTERVAL_1_MINUTE = 60    # for debug
 TASK_NO_DELAY_INTERVAL = 0    # seconds
 SLEEP_INTERVAL = 5  # seconds
-START_AT_HOUR = 00
-START_AT_MINUTE = 10
+START_AT_HOUR = 12
+START_AT_MINUTE = 0
 
 
 class ProgramKilled(Exception):
@@ -48,11 +49,11 @@ def run_task(interval, func):
         signal.signal(signal.SIGTERM, signal_handler)
         signal.signal(signal.SIGINT, signal_handler)
         job = Job(interval=timedelta(seconds=interval), execute=func)
-
+        # To provide exact task execution time, with no matter when timer started.
         # while datetime.now().time().hour != START_AT_HOUR or datetime.now().time().minute != START_AT_MINUTE:
         #    time.sleep(SLEEP_INTERVAL)
         job.start()
-        print("Timer: job called at ", datetime.now(), 'with task interval 24 hours (', TASK_DELAY_INTERVAL_24_HOURS,
+        print("Timer: job called at ", datetime.now(), 'with task interval 24 hours (', TASK_DELAY_INTERVAL_1_MINUTE,
               ') seconds.\n')
     while True:
         try:
@@ -61,6 +62,4 @@ def run_task(interval, func):
             print("Program killed: stopping tasks at ", datetime.now(), '.\n')
             job.stop()
             break
-
-
-#run_task(TASK_DELAY_INTERVAL_10_MINUTES, run_scheduled_jobs)
+#run_task(TASK_DELAY_INTERVAL_1_MINUTE, run_scheduled_jobs)
