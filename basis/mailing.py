@@ -7,7 +7,6 @@ from basis.dal import get_recipients
 from basis.dal import get_content
 
 sender = 'tatsm.reg@gmail.com'
-cc = 'stv_stv@tut.by'
 subject = "Daily news"
 
 
@@ -35,7 +34,6 @@ def create_message():
     msg["Subject"] = subject
     msg["From"] = sender
     msg["To"] = ", ".join(recipients)
-    msg["Cc"] = cc
     body = MIMEText(content)
     msg.attach(body)
     return msg
@@ -48,7 +46,7 @@ def send_email():
         server = SMTP('smtp.gmail.com:587')
         server.starttls()
         server.login('tatsm.reg@gmail.com', 'TatSmReg2019*')
-        server.sendmail(message["From"], message["To"].split(",") + message["Cc"].split(","), message.as_string())
+        server.sendmail(message["From"], message["To"].split(","), message.as_string())
         server.quit()
         print("News sent successfully at ", datetime.now(), '.\n')
         return True
@@ -56,4 +54,4 @@ def send_email():
         print('News send failed', ex, '\n')
         return False
 
-#success = send_email()
+# success = send_email()

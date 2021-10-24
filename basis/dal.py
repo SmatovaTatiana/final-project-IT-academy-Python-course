@@ -1,5 +1,3 @@
-# To access Django
-import datetime
 import os
 from django.core.wsgi import get_wsgi_application
 
@@ -7,10 +5,11 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'smatova_project.settings'
 application = get_wsgi_application()
 
 import datetime
-from datetime import datetime
-from datetime import date
 from basis import models
 from basis.models import Profile
+from datetime import datetime
+from datetime import date
+
 
 def get_recipients():
     emails = []
@@ -41,4 +40,3 @@ def get_content():
 
 # content = get_content()
 # recipients = get_recipients()
-

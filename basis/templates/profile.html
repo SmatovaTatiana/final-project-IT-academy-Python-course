@@ -6,10 +6,10 @@
 
 {% block body %}
     <p>{{ user.user }}</p>
-    <p>Hello, {{ user.username }} !</p>
-    <p>your e-mail: {{ user.email }}</p>
-    <p>Subscription email: {{ user.profile.subscription_email }}</p>
-    <p>Subscribed for news:  {% if user.profile.subscribed_for_mailings is True %}
+    <p><h3>Hello, {{ user.username }} !</h3></p>
+    <p><b>your e-mail: </b>{{ user.email }}</p>
+    <p><b>Subscription email: </b>{{ user.profile.subscription_email }}</p>
+    <p><b>Subscribed for news:  </b>{% if user.profile.subscribed_for_mailings is True %}
             Yes
         {% else %}
             No

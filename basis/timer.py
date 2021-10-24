@@ -62,4 +62,4 @@ def run_task(interval, func):
             print("Program killed: stopping tasks at ", datetime.now(), '.\n')
             job.stop()
             break
-#run_task(TASK_DELAY_INTERVAL_1_MINUTE, run_scheduled_jobs)
+# run_task(TASK_DELAY_INTERVAL_1_MINUTE, run_scheduled_jobs)

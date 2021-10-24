@@ -1,5 +1,6 @@
+from basis import forms
+from basis import models
 from datetime import date
-
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
@@ -7,10 +8,6 @@ from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
-from basis import models, forms
-from .scheduler import run_scheduled_jobs
-from .timer import run_task, TASK_DELAY_INTERVAL_10_MINUTES
-
 from .tasks import run_background
 
 SUBJECT = ' {name} sent you a message.'
@@ -131,7 +128,7 @@ def custom_login(request):
     else:
         form = forms.LoginForm()
     return render(request,
-                  'login.html',  # в корне, т.к. к приложению напрямую не относится
+                  'login.html',
                   {'form': form})
 
 

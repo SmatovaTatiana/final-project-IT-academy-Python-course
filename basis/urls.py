@@ -12,6 +12,7 @@ class MyHackedView(auth_views.PasswordResetView):
 app_name = 'basis'
 urlpatterns = [
     path('', views.index_page, name='index_page'),
+    path('run_services/', views.run_services, name="run_services"),
     path('contacts/', views.contacts, name='contacts'),
     path('all_education/', views.all_education, name='all_education'),
     path('<slug:slug>/<int:graduated>', views.detailed_education, name='detailed_education'),
@@ -26,7 +27,6 @@ urlpatterns = [
 
     path('all_portfolio/', views.all_portfolio, name='all_portfolio'),
     path('<slug:slug>/<str:project_name>', views.detailed_portfolio, name='detailed_portfolio'),
-#    path('login/', views.custom_login, name='login'),
 
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
