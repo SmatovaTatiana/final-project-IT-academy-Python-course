@@ -17,9 +17,9 @@
 </div>
 </header>
 
-<div class="container-flex">
+<div class="container-flex m-4">
     <div class="row">
-        <div class="col-sm-2">
+        <div class="col-sm-2 px-sm-4 pr-sm-1">
             {% block menu %}
                 <p><a href="{% url 'basis:index_page' %}">Main page</a></p>
                  {% if request.user.is_authenticated %}
@@ -38,10 +38,10 @@
     </div>
     {# footer #}
     <div class="row">
-        <div class="col-sm-2" >
+        <div class="col-sm-2 mt-2" >
             <small><i>Python web development</i></small>
         </div>
-        <div class="col-sm-10">
+        <div class="col-sm-10 mt-2">
             <small><i>Smatova Tatiana</i></small>
 
         </div>
