@@ -29,6 +29,8 @@
                     <a href="{% url 'basis:login' %}">login </a><br>
                     <a href="{% url 'basis:register' %}">register </a><br>
                 {% endif %}
+                <p><a href="{% url 'basis:index_page' %}">Main page</a></p>
+                <p><a href="{% url 'basis:about' %}">About me</a></p>
             {% endblock %}
         </div>
         <div class="col-sm-10" >

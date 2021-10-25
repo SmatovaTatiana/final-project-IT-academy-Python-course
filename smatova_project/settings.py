@@ -139,6 +139,7 @@ EMAIL_HOST_USER = 'tatsm.reg@gmail.com'
 EMAIL_HOST_PASSWORD = 'TatSmReg2019*'
 EMAIL_USE_TLS = True
 
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
@@ -152,10 +153,10 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/basis/login/'
+LOGIN_REDIRECT_URL = '/basis/'
 
-LOGOUT_URL = '/logout/'
+LOGOUT_URL = '/basis/logout/'
 
 SOCIAL_AUTH_GITHUB_KEY = 'ffc7fc7c9f42ba9e7b77'
 SOCIAL_AUTH_GITHUB_SECRET = '8c69424db17b16e4c09371a2bc0d57d88bb0a190'

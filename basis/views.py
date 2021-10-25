@@ -53,6 +53,10 @@ def contacts(request):
     return render(request, 'contacts.html')
 
 
+def about(request):
+    return render(request, 'about.html')
+
+
 def all_portfolio(request):
     portfolios = models.Portfolio.objects.all()
     return render(request, "portfolio/all_portfolio.html",
