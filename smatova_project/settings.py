@@ -135,8 +135,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 """
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'tatsm.reg@gmail.com'
-EMAIL_HOST_PASSWORD = 'TatSmReg2019*'
+EMAIL_HOST_USER = 'my email'
+EMAIL_HOST_PASSWORD = 'my password'
 EMAIL_USE_TLS = True
 
 
