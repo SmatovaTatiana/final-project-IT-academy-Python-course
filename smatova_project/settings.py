@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-r@o@43eq07e5$1!sn7hgqq#+8td6328ht1kv!na*p66i$09@6^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -158,11 +158,11 @@ LOGIN_REDIRECT_URL = '/basis/'
 
 LOGOUT_URL = '/basis/logout/'
 
-SOCIAL_AUTH_GITHUB_KEY = 'ffc7fc7c9f42ba9e7b77'
-SOCIAL_AUTH_GITHUB_SECRET = '8c69424db17b16e4c09371a2bc0d57d88bb0a190'
+SOCIAL_AUTH_GITHUB_KEY = ' '
+SOCIAL_AUTH_GITHUB_SECRET = ' '
 
-SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = '78pro9uxsyejr3'
-SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = 'BuljHeHqC2QRihao'
+SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = ' '
+SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = ' '
 
 
 REDIS_HOST = '127.0.0.1'
